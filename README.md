@@ -13,3 +13,5 @@ When starting a new project you will have to manually do the following:
 4. Copy a Docker specific `settings.php` and `services.yml` file to `./docker/web/sites/default/`.
 
 5. _**Profit...**_
+
+![](https://media2.giphy.com/media/dcWd8Q1zVA1YA/giphy.gif)
