@@ -1,0 +1,38 @@
+checks:
+  php:
+    code_rating: true
+    excluded_dependencies:
+      - drupal/core
+
+build:
+  environment:
+    php: '7.0.8'
+    node: 'v6.2.0'
+    # Disable default dependencies - we where getting postgresql and redis.
+    postgresql: false
+    redis: false
+  dependencies:
+    after:
+      - 'mkdir reports'
+  tests:
+    override:
+      -
+        command: 'vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml,phpcs.xml --report=checkstyle --report-file=reports/phpcs-checkstyle.xml'
+        analysis:
+          file: 'reports/phpcs-checkstyle.xml'
+          format: 'php-cs-checkstyle'
+      -
+        command: 'node_modules/.bin/eslint --config web/.eslintrc --ignore-path .eslintignore --format checkstyle --output-file reports/eslint-data.xml'
+        analysis:
+            file: 'reports/eslint-data.xml'
+            format: 'eslint-checkstyle'
+
+build_failure_conditions:
+  # No new issues allowed.
+  - 'issues.new.exists'
+
+filter:
+    paths:
+      - 'web/modules/custom/*'
+      - 'web/profiles/custom/*'
+      - 'web/themes/custom/*'

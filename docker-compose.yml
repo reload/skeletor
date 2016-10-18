@@ -1,0 +1,84 @@
+version: "2"
+services:
+
+  https:
+    image: zazukoians/hitch:1.4.1
+    ports:
+      - '443'
+    environment:
+      HITCH_PARAMS: --backend=[web]:80 --frontend=[*]:443
+    links:
+      - web
+
+  web:
+    image: reload/drupal-apache-fpm
+    ports:
+      - '80'
+    volumes_from:
+      - webroot
+    links:
+      - php:fpm
+
+  php:
+    image: reload/drupal-php7-fpm
+    ports:
+      - '9000'
+    volumes_from:
+      - webroot
+    links:
+      - db
+      - solr4
+      - solr6
+    environment:
+      PATH: '/var/www/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+  db:
+    image: mariadb:10
+    ports:
+      - '3306'
+#    volumes_from:
+#      - db-data
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: db
+      MYSQL_PASSWORD: db
+
+#  db-data:
+#    image: reload/db-data:SKELETOR-latest
+
+  solr4:
+    image: blinkreaction/drupal-solr:4.x-stable
+    ports:
+      - '8983'
+    volumes:
+      - './web/modules/contrib/search_api_solr/solr-conf/4.x:/var/lib/solr/conf:ro'
+
+  solr6:
+    image: solr:6.1
+    ports:
+      - '8983'
+    volumes:
+      - './web/modules/contrib/search_api_solr/solr-conf/6.x:/solr-conf/conf:ro'
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - SKELETORcore
+      - /solr-conf
+
+  npm:
+    image: mhart/alpine-node:6
+    volumes:
+      - './:/src'
+    entrypoint: "/bin/sh -c 'cd /src && npm start'"
+
+  # Webroot and volumned paths needs to be accessible from multiple containers
+  # so we set up all paths once and for all via a single volumne-container.
+  webroot:
+    image: tianon/true
+    volumes:
+      - './web:/var/www/web:rw'
+      - './vendor:/var/www/vendor:ro'
+      - './configuration:/var/www/configuration:rw'
+      - './docker/docker.settings.php:/var/www/web/sites/default/settings.php:ro'
+      - './docker/docker.services.yml:/var/www/web/sites/default/services.yml:ro'

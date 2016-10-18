@@ -1,0 +1,20 @@
+{
+  "name": "Skeletor",
+  "version": "1.0.0",
+  "description": "Node dependency declarations for the Skeletor project.",
+  "scripts": {
+    "start": "npm install && gulp"
+  },
+  "devDependencies": {
+    "eslint": "^2.10.2"
+  }
+}
+
+/*
+var gulp = require('gulp');
+var del = require('del');
+var scss = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var notify = require('gulp-notify');
+var runSequence = require('run-sequence');
+*/
