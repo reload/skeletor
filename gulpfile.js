@@ -11,6 +11,7 @@ var scss = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var notify = require('gulp-notify');
 var runSequence = require('run-sequence');
+var eslint = require('gulp-eslint');
 
 var assetPaths = {
   src: 'web/themes/custom/' + themeName + '/assets_src',
@@ -47,7 +48,8 @@ gulp.task('scss', function () {
 
 gulp.task('javascript', function () {
   return gulp.src([path.js.src + '/*.js', path.js.src + '/*/*.js'])
-    // @TODO Her mangler ESLINT.
+    .pipe(eslint('web/.eslintrc'))
+    .pipe(eslint.format())
     .pipe(gulp.dest(path.js.dest))
 });
 
@@ -58,7 +60,7 @@ gulp.task('images', function () {
 
 gulp.task('watch', function () {
   gulp.watch([path.stylesheets.src + '/*/*.scss', path.stylesheets.src + '/*/*.scss'], ['scss']);
-  gulp.watch(path.js.src + '/*/*.js', ['javascript']);
+  gulp.watch([path.js.src + '/*.js', path.js.src + '/*/*.js'], ['javascript']);
   gulp.watch(path.images.src + '/*', ['images']);
 });
 

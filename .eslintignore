@@ -1,3 +1,17 @@
-*
-**/*
-!web/**/custom/**/*.js
+# Blacklist files/directories in same directory.
+/*
+
+# Whitelist the web directory again. We have to do this so the crawler knows
+# to look in the web dir, at all.
+!web/
+# Ignore all web files/directories.
+web/*
+# Allow the crawler to access the theme directory.
+!web/themes/
+!web/themes/custom/*
+# Allow the crawler to access the modules directory.
+!web/modules/
+!web/modules/custom/*
+# Allow the crawler to access the profiles directory.
+!web/profiles/
+!web/profiles/custom/*
