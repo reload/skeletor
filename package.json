@@ -6,15 +6,13 @@
     "start": "npm install && gulp"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sass": "^2.2.0",
+    "node-sass": "^3.4.2",
+    "del": "^2.2.2",
+    "run-sequence": "^1.2.2",
     "eslint": "^2.10.2"
   }
 }
-
-/*
-var gulp = require('gulp');
-var del = require('del');
-var scss = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var notify = require('gulp-notify');
-var runSequence = require('run-sequence');
-*/
