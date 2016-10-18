@@ -67,7 +67,7 @@ services:
       - /solr-conf
 
   npm:
-    image: mhart/alpine-node:6
+    image: node:argon
     volumes:
       - './:/src'
     entrypoint: "/bin/sh -c 'cd /src && npm start'"
