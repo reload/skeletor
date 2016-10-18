@@ -80,5 +80,5 @@ services:
       - './web:/var/www/web:rw'
       - './vendor:/var/www/vendor:ro'
       - './configuration:/var/www/configuration:rw'
-      - './docker/docker.settings.php:/var/www/web/sites/default/settings.php:ro'
-      - './docker/docker.services.yml:/var/www/web/sites/default/services.yml:ro'
+      - './docker/web/sites/default/docker.settings.php:/var/www/web/sites/default/settings.php:ro'
+      - './docker/web/sites/default/docker.services.yml:/var/www/web/sites/default/services.yml:ro'
