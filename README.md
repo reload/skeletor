@@ -1,8 +1,8 @@
 # Skeletor
-Welcome to Skeletor (Hue, hue, hue!). The most manual, and badass, was to get started with a new Drupal 8 project.
+Welcome to Skeletor (Hue, hue, hue!). The most manual, and badass, way to get started with a new Drupal 8 project.
 
 ## Installation
-When starting a new project you will have to manually do the following:
+When starting a new project you''ll have to manually do the following:
 
 1. Install a new project with [Drupal Project](https://github.com/drupal-composer/drupal-project) `composer create-project drupal-composer/drupal-project:8.x-dev some-dir --stability dev --no-interaction`.
 
