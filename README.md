@@ -10,7 +10,7 @@ When starting a new project you''ll have to manually do the following:
 
 3. Go to the `docker-composer.yml` file and delete any unwanted services.
 
-4. Copy a Docker specific `settings.php` and `services.yml` file to `./docker/web/sites/default/`.
+4. Copy a Docker specific `settings.php` and `services.yml` file to `./docker/webroot/`.
 
 5. _**Profit...**_
 
