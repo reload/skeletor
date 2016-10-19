@@ -31,6 +31,7 @@ services:
       - solr6
     environment:
       PATH: '/var/www/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    working_dir: /var/www/web
 
   db:
     image: mariadb:10
