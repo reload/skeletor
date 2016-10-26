@@ -22,7 +22,7 @@ build:
           file: 'reports/phpcs-checkstyle.xml'
           format: 'php-cs-checkstyle'
       -
-        command: 'node_modules/.bin/eslint --config web/.eslintrc --ignore-path .eslintignore --format checkstyle --output-file reports/eslint-data.xml'
+        command: 'node_modules/.bin/eslint --config web/.eslintrc --ignore-path .eslintignore --format checkstyle --output-file reports/eslint-data.xml .'
         analysis:
             file: 'reports/eslint-data.xml'
             format: 'eslint-checkstyle'
